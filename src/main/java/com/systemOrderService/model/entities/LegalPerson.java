@@ -1,9 +1,15 @@
 package com.systemOrderService.model.entities;
 
+import com.systemOrderService.repositories.services.OrderService;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class LegalPerson extends Person{
     private String reason;
     private int cnpj;
     private String stateRegistration;
+    private List<OrderService> listNewOrder = new ArrayList<>();
 
     public LegalPerson(){
         super();
@@ -40,6 +46,10 @@ public class LegalPerson extends Person{
         this.stateRegistration = stateRegistration;
     }
 
+    public List<OrderService> getListNewOrder() {
+        return listNewOrder;
+    }
+
     public void formattedCnpj(String cnpj) {
         String formattedCnpj = String.format("%s.%s.%s/%s-%s",
                 cnpj.substring(0, 2),
@@ -48,5 +58,15 @@ public class LegalPerson extends Person{
                 cnpj.substring(8,12),
                 cnpj.substring(12,14));
         System.out.print(formattedCnpj);
+    }
+
+    public void addOrderService(OrderService order) {
+        listNewOrder.add(order);
+        order.setLegalPerson(this);
+    }
+
+    public void removeOrderService(OrderService order) {
+        listNewOrder.remove(order);
+        order.setLegalPerson(null);
     }
 }
