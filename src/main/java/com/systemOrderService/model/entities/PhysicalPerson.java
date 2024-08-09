@@ -1,9 +1,14 @@
 package com.systemOrderService.model.entities;
 
+import com.systemOrderService.repositories.services.OrderService;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class PhysicalPerson extends Person {
     private String cpf;
     private String rg;
-
+    private List<OrderService> listNewOrder = new ArrayList<>();
 
     public PhysicalPerson(){
         super();
@@ -31,6 +36,11 @@ public class PhysicalPerson extends Person {
         this.rg = rg;
     }
 
+    public List<OrderService> getListNewOrder() {
+        return listNewOrder;
+    }
+
+
     public void formattedCpf(String cpf) {
         String formattedCpf = String.format("%s.%s.%s/%s-%s",
                 cpf.substring(0, 3),
@@ -38,5 +48,15 @@ public class PhysicalPerson extends Person {
                 cpf.substring(6,9),
                 cpf.substring(9,11));
         System.out.print(formattedCpf);
+    }
+
+    public void addOrderService(OrderService order) {
+        listNewOrder.add(order);
+        order.setPhysicalPerson(this);
+    }
+
+    public void removeOrderService(OrderService order) {
+        listNewOrder.remove(order);
+        order.setPhysicalPerson(null);
     }
 }
