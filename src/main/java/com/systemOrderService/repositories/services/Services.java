@@ -1,7 +1,6 @@
 package com.systemOrderService.repositories.services;
 
 import com.systemOrderService.entities.enums.Service;
-import com.systemOrderService.entities.enums.Situation;
 
 public class Services {
     private String defect;
