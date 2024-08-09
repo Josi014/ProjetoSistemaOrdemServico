@@ -48,8 +48,4 @@ public class Services {
                 value+=55.00;
         }
     }
-
-    public double total(double price, double amount) {
-        return amount * price;
-    }
 }
