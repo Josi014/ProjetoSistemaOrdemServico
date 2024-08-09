@@ -1,11 +1,12 @@
 package com.systemOrderService.repositories.services;
 
 import com.systemOrderService.entities.enums.Service;
+import com.systemOrderService.entities.enums.Situation;
 
 public class Services {
     private String defect;
     private Service service;
-    private Double value;
+    private Double price;
 
 
     public Services(String defect,String service) {
@@ -29,23 +30,24 @@ public class Services {
         this.service = service;
     }
 
-    public Double getValue() {
-        return value;
-    }
 
     public void newService() {
         switch (service) {
             case SUPORTE:
-                value += 80.00;
+                price = 80.00;
                 break;
             case LIMPEZA:
-                value += 50.00;
+                price = 50.00;
                 break;
             case FORMATAÇÃO:
-                value+=110.00;
+                price =110.00;
                 break;
             case BACKUP:
-                value+=55.00;
+                price =55.00;
         }
+    }
+
+    public double getPrice() {
+        return price;
     }
 }
