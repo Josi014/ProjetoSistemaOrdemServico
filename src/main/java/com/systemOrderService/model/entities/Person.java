@@ -1,24 +1,24 @@
 package com.systemOrderService.model.entities;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.systemOrderService.model.Exception.DomainException;
 
 abstract public class Person {
     private String name;
     private String email;
-    private String adress;
+    private String address;
     private String telephone;
     private String zipCode;
-    private List<Person> listPerson = new ArrayList<>();
-
 
     public Person() {
     }
 
-    public Person(String name, String email, String adress, String telephone, String zipCode) {
+    public Person(String name, String email, String address, String telephone, String zipCode) throws DomainException {
+        if(telephone == null || telephone.length() != 11){
+            throw new DomainException("Telephone number cannot be longer or shorter than 11 characters.");
+        }
         this.name = name;
         this.email = email;
-        this.adress = adress;
+        this.address = address;
         this.telephone = telephone;
         this.zipCode = zipCode;
     }
@@ -39,12 +39,12 @@ abstract public class Person {
         this.email = email;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getTelephone() {
@@ -63,37 +63,22 @@ abstract public class Person {
         this.zipCode = zipCode;
     }
 
-    public List<Person> getListPerson() {
-        return listPerson;
-    }
 
-    public void formattedNumber(String numberPhone) {
-        String formattedNumber = String.format("(%s) %s-%s",
-                numberPhone.substring(0, 2),
-                numberPhone.substring(2, 7),
-                numberPhone.substring(7));
-        System.out.print(formattedNumber);
+    public String formattedNumber(){
+        return String.format("(%s) %s-%s",
+                telephone.substring(0, 2),
+                telephone.substring(2, 7),
+                telephone.substring(7));
     }
 
 
-    public void addPerson(Person person){
-        listPerson.add(person);
-        for(Person p :listPerson){
-            System.out.print(p);
-        }
+    public String showInfoPerson(){
+        String txt = " ";
+        txt = "\nPerson name=" + name;
+        txt += "\n";
+        txt += "Email address: " + email;
+        txt += "\nPhone number: " + formattedNumber();
+        return txt;
     }
-
-    public void removePerson(Person person){
-        listPerson.remove(person);
-        for(Person p :listPerson){
-            System.out.print(p);
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "Person name='" + name;
-    }
-
 
 }
