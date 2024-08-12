@@ -4,22 +4,22 @@ import com.systemOrderService.model.exception.DomainException;
 
 import java.text.DecimalFormat;
 
-public class Product extends Services {
+public class OrderServiceProduct extends Services {
     private String nicknameProduct;
     private Products product;
     private Double price;
     private Integer amount;
     private double sum = 0;
 
-    public Product() {
+    public OrderServiceProduct() {
         super();
     }
 
-    public Product(String situation, String description, String observation, String equipmentType, String defect, String service, Integer amountServices, String nicknameProduct, String product, Integer amount) throws DomainException {
+    public OrderServiceProduct(String situation, String description, String observation, String equipmentType, String defect, String service, Integer amountServices, String nicknameProduct, String product, Integer amount) throws DomainException {
         super(situation, description, observation, equipmentType, defect, service, amountServices);
         boolean validProduct = false;
         for (Products products : Products.values()) {
-            if (products.name().equals(products)) {
+            if (products.name().equals(product)) {
                 validProduct = true;
                 break;
             }

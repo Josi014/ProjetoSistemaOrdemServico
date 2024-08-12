@@ -4,7 +4,7 @@ import com.systemOrderService.entities.enums.Situation;
 import com.systemOrderService.model.exception.DomainException;
 import com.systemOrderService.model.entities.LegalPerson;
 import com.systemOrderService.model.entities.PhysicalPerson;
-import com.systemOrderService.repositories.services.Product;
+import com.systemOrderService.repositories.services.OrderServiceProduct;
 import com.systemOrderService.repositories.services.Services;
 
 import java.util.Locale;
@@ -75,7 +75,7 @@ public class Main {
                     System.out.print(services.showInfo());
                     break;
                 case 2:
-                    Product products = new Product();
+                    OrderServiceProduct products = new OrderServiceProduct();
                     System.out.print("Products in stock: \n");
                     products.showcaseProducts();
                     System.out.print("Enter the Product's nickname: ");
@@ -85,7 +85,7 @@ public class Main {
                     String product = prod.toUpperCase();
                     System.out.print("Amount? ");
                     int amount = sc.nextInt();
-                    products = new Product("ABERTO", description, observation, equipmentType, defect, service, amountServices, nicknameProduct, product, amount);
+                    products = new OrderServiceProduct("ABERTO", description, observation, equipmentType, defect, service, amountServices, nicknameProduct, product, amount);
                     validatePerson(opcaoPerson, physicalPerson, legalPerson);
                     System.out.print(products.showInfo());
                     break;
