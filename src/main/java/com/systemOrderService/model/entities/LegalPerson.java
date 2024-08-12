@@ -1,6 +1,6 @@
 package com.systemOrderService.model.entities;
 
-import com.systemOrderService.model.Exception.DomainException;
+import com.systemOrderService.model.exception.DomainException;
 
 public class LegalPerson extends Person{
     private String reason;

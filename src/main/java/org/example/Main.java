@@ -1,7 +1,7 @@
 package org.example;
 
 import com.systemOrderService.entities.enums.Situation;
-import com.systemOrderService.model.Exception.DomainException;
+import com.systemOrderService.model.exception.DomainException;
 import com.systemOrderService.model.entities.LegalPerson;
 import com.systemOrderService.model.entities.PhysicalPerson;
 import com.systemOrderService.repositories.services.Product;

@@ -1,6 +1,6 @@
 package com.systemOrderService.repositories.services;
 import com.systemOrderService.entities.enums.Service;
-import com.systemOrderService.model.Exception.DomainException;
+import com.systemOrderService.model.exception.DomainException;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

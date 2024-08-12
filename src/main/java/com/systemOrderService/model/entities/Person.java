@@ -1,6 +1,6 @@
 package com.systemOrderService.model.entities;
 
-import com.systemOrderService.model.Exception.DomainException;
+import com.systemOrderService.model.exception.DomainException;
 
 abstract public class Person {
     private String name;
