@@ -1,114 +1,57 @@
 package com.systemOrderService.repositories.services;
-
-import com.systemOrderService.model.entities.LegalPerson;
-import com.systemOrderService.model.entities.PhysicalPerson;
-
 import com.systemOrderService.entities.enums.Situation;
+import com.systemOrderService.model.Exception.DomainException;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class OrderService {
+abstract public class OrderService {
 
-    private int id;
-    private Date date;
     private Situation situation;
     private String description;
     private String observation;
     private String equipmentType;
-    private LegalPerson legalPerson;
-    private PhysicalPerson physicalPerson;
-    private SimpleDateFormat mascaraData = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    private final SimpleDateFormat mascaraData = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
     public OrderService() {
     }
 
-    public OrderService(int id, Date date, String situation, String description, String observation,String equipmentType) {
-        this.id = id;
-        this.date = date;
+    public OrderService(String situation, String description, String observation, String equipmentType) {
         this.situation = Situation.valueOf(situation);
         this.description = description;
         this.observation = observation;
         this.equipmentType = equipmentType;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Situation getSituation() {
-        return situation;
-    }
 
     public void setSituation(Situation situation) {
         this.situation = situation;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getObservation() {
-        return observation;
-    }
-
-    public void setObservation(String observation) {
-        this.observation = observation;
-    }
-
-    public String getEquipmentType() {
-        return equipmentType;
-    }
-
-    public void setEquipmentType(String equipmentType) {
-        this.equipmentType = equipmentType;
-    }
-
-    public LegalPerson getLegalPerson() {
-        return legalPerson;
-    }
-
-    public void setLegalPerson(LegalPerson legalPerson) {
-        this.legalPerson = legalPerson;
-    }
-
-    public PhysicalPerson getPhysicalPerson() {
-        return physicalPerson;
-    }
-
-    public void setPhysicalPerson(PhysicalPerson physicalPerson) {
-        this.physicalPerson = physicalPerson;
-    }
-
-    public void updateSituation() {
+    public String updateSituation() {
+        String situationOrder = "";
         switch (situation) {
             case ABERTO:
-                System.out.print("Order open");
+                Date date = new Date();
+                situationOrder = "Order open " + mascaraData.format(date);
                 break;
             case FECHADO:
-                System.out.print("Order closed");
+                Date closingDate = new Date();
+                situationOrder = "Order closed " + mascaraData.format(closingDate);
                 break;
         }
+        return situationOrder;
     }
 
-    public  double total(double price, double amount) {
-       return amount * price;
-    }
+    public String showInfo() throws DomainException {
+        int id = 0;
+        System.out.print("\nID: " + id);
+        String txt = " ";
+        txt += "\nService order status: " + updateSituation() + "\n";
+        txt += "\nDescription: " + description;
+        txt += "\nObservation: " + observation;
+        txt += "\nEquipment type: " + equipmentType;
 
+        return txt;
+    }
 }
