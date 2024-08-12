@@ -5,5 +5,7 @@ enum class Service {
     SUPORTE,
     LIMPEZA,
     FORMATAÇÃO,
-    BACKUP;
+    BACKUP,
+    TROCA,
+    NENHUM;
 }
