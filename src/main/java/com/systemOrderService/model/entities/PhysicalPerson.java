@@ -1,21 +1,20 @@
 package com.systemOrderService.model.entities;
 
-import com.systemOrderService.repositories.services.OrderService;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.systemOrderService.model.Exception.DomainException;
 
 public class PhysicalPerson extends Person {
     private String cpf;
     private String rg;
-    private List<OrderService> listNewOrder = new ArrayList<>();
 
     public PhysicalPerson(){
         super();
     }
 
-    public PhysicalPerson(String name, String email, String adress, String telephone, String zipCode, String cpf, String rg) {
-        super(name, email, adress, telephone, zipCode);
+    public PhysicalPerson(String name, String email, String address, String telephone, String zipCode, String cpf, String rg) throws DomainException {
+        super(name, email, address, telephone, zipCode);
+        if(cpf == null || cpf.length() != 11){
+            throw new DomainException("Error cpf cannot be greater or less than 11 characters or.");
+        }
         this.cpf = cpf;
         this.rg = rg;
     }
@@ -36,27 +35,16 @@ public class PhysicalPerson extends Person {
         this.rg = rg;
     }
 
-    public List<OrderService> getListNewOrder() {
-        return listNewOrder;
-    }
-
-
-    public void formattedCpf(String cpf) {
-        String formattedCpf = String.format("%s.%s.%s/%s-%s",
+    public String formattedCpf(){
+        return String.format("%s.%s.%s-%s",
                 cpf.substring(0, 3),
                 cpf.substring(3, 6),
                 cpf.substring(6,9),
                 cpf.substring(9,11));
-        System.out.print(formattedCpf);
     }
 
-    public void addOrderService(OrderService order) {
-        listNewOrder.add(order);
-        order.setPhysicalPerson(this);
-    }
-
-    public void removeOrderService(OrderService order) {
-        listNewOrder.remove(order);
-        order.setPhysicalPerson(null);
+    @Override
+    public String showInfoPerson() {
+        return super.showInfoPerson() + "\nCPF: " + formattedCpf() +"\n";
     }
 }
