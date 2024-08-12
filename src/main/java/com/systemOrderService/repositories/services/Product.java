@@ -1,7 +1,5 @@
 package com.systemOrderService.repositories.services;
-
 import com.systemOrderService.entities.enums.Products;
-import com.systemOrderService.entities.enums.Service;
 import com.systemOrderService.model.Exception.DomainException;
 
 import java.text.DecimalFormat;
