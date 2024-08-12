@@ -81,8 +81,7 @@ public class Main {
                     System.out.print("Enter the Product's nickname: ");
                     String nicknameProduct = sc.nextLine();
                     System.out.print("Enter the product by its stock ID: ");
-                    String prod = sc.nextLine();
-                    String product = prod.toUpperCase();
+                    String product = sc.nextLine().toUpperCase();
                     System.out.print("Amount? ");
                     int amount = sc.nextInt();
                     products = new OrderServiceProduct("ABERTO", description, observation, equipmentType, defect, service, amountServices, nicknameProduct, product, amount);
