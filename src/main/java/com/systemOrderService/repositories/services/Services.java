@@ -9,7 +9,7 @@ import java.util.List;
 public class Services extends OrderService {
     private String defect;
     private Service service;
-    private double price;
+    private Double price;
     private Integer amountServices;
     private double soma = 0;
     List<Services> newListSer = new ArrayList<>();
